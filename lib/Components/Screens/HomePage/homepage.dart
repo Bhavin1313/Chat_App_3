@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 
 import '../../Helper/auth_helper.dart';
 import '../../Helper/cloud_firestore_helper.dart';
+import '../../Stream/stream.dart';
+import '../ChatPage/Model/chatmodel.dart';
 import '../ChatPage/Model/receiver_model.dart';
 
 class HomePage extends StatelessWidget {
@@ -55,6 +57,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey.withOpacity(.4),
         actions: [
           IconButton(
               onPressed: () {
@@ -72,53 +75,74 @@ class HomePage extends StatelessWidget {
             : Text("${Auth_Helper.auth_helper.auth.currentUser?.displayName}"),
         centerTitle: true,
       ),
-      body: StreamBuilder(
-        stream: Firestore_Helper.firestore_helper.fetchUser(),
-        builder: (ctx, snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text("${snapshot.error}"),
-            );
-          } else if (snapshot.hasData) {
-            QuerySnapshot<Map<String, dynamic>>? querySnapshot = snapshot.data;
-            List<QueryDocumentSnapshot<Map<String, dynamic>>>? userData =
-                querySnapshot?.docs;
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              "https://t4.ftcdn.net/jpg/03/38/75/29/360_F_338752910_Th7euFDcjaI0nWNOBoi0JDSR0zu92WkM.jpg",
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: StreamBuilder(
+          stream: Firestore_Helper.firestore_helper.fetchUser(),
+          builder: (ctx, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("${snapshot.error}"),
+              );
+            } else if (snapshot.hasData) {
+              QuerySnapshot<Map<String, dynamic>>? querySnapshot =
+                  snapshot.data;
+              List<QueryDocumentSnapshot<Map<String, dynamic>>>? userData =
+                  querySnapshot?.docs;
 
-            return ListView.builder(
-              itemCount: userData?.length,
-              itemBuilder: (ctx, i) {
-                return Card(
-                  elevation: 3,
-                  child: ListTile(
-                    onTap: () {
-                      Receiver receiver = Receiver(
-                          name: userData?[i]['name'],
-                          uid: userData?[i]['uid'],
-                          photo: userData?[i]['photo']);
-                      Get.toNamed("/chat", arguments: receiver);
-                    },
-                    title: Text("${userData?[i]['name']}"),
-                    subtitle: Text("${userData?[i]['email']}"),
-                    leading: CircleAvatar(
-                      radius: 30,
-                      foregroundImage: NetworkImage("${userData?[i]['photo']}"),
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {
-                        Firestore_Helper.firestore_helper
-                            .deleteUser(deleteData: "${userData?[i]['uid']}");
+              return ListView.builder(
+                itemCount: userData?.length,
+                itemBuilder: (ctx, i) {
+                  return Card(
+                    color: Colors.blueGrey.withOpacity(.5),
+                    elevation: 0,
+                    child: ListTile(
+                      onTap: () async {
+                        Receiver receiver = Receiver(
+                            name: userData?[i]['name'],
+                            uid: userData?[i]['uid'],
+                            photo: userData?[i]['photo']);
+
+                        ChatDetails chatdata = ChatDetails(
+                            receiverUid: receiver.uid,
+                            senderUid:
+                                Auth_Helper.auth_helper.auth.currentUser!.uid,
+                            message: "");
+                        messageData = await Firestore_Helper.firestore_helper
+                            .displayMessage(chatDetails: chatdata);
+                        Get.toNamed("/chat", arguments: receiver);
                       },
-                      icon: Icon(Icons.delete_outline),
+                      title: Text("${userData?[i]['name']}"),
+                      subtitle: Text("${userData?[i]['email']}"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        foregroundImage:
+                            NetworkImage("${userData?[i]['photo']}"),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          Firestore_Helper.firestore_helper
+                              .deleteUser(deleteData: "${userData?[i]['uid']}");
+                        },
+                        icon: Icon(Icons.delete_outline),
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }
