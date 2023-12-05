@@ -1,10 +1,12 @@
-import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../../Helper/auth_helper.dart';
 import '../../../Helper/cloud_firestore_helper.dart';
+import '../../../Stream/stream.dart';
 import '../Model/chatmodel.dart';
 import '../Model/receiver_model.dart';
 
+// ignore: must_be_immutable, camel_case_types
 class Chat_Screen extends StatelessWidget {
   Chat_Screen({super.key});
   TextEditingController messageController = TextEditingController();
@@ -32,7 +34,31 @@ class Chat_Screen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Container(),
+              child: StreamBuilder(
+                stream: messageData,
+                builder: (ctx, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  } else if (snapshot.hasData) {
+                    QuerySnapshot? querysnapshot = snapshot.data;
+                    List<QueryDocumentSnapshot>? chats = querysnapshot?.docs;
+
+                    return ListView.builder(
+                      itemCount: chats?.length,
+                      itemBuilder: (ctx, i) {
+                        return Chip(
+                          label: Text(
+                            "${chats?[i]['message']}",
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ),
             TextFormField(
               controller: messageController,
@@ -50,16 +76,16 @@ class Chat_Screen extends StatelessWidget {
 
                     Firestore_Helper.firestore_helper
                         .sendMessage(chatDetails: chatdetails);
-                    log("${message}");
+
                     messageController.clear();
                   },
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                 ),
                 hintText: "send message.....",
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
