@@ -40,6 +40,8 @@ dependencies:
   firebase_core:
   cloud_firestore:
   google_sign_in:
+  firebase_storage:
+  image_picker:
 
 dev_dependencies:
   flutter_test:

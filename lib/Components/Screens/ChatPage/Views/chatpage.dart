@@ -1,5 +1,10 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../Helper/auth_helper.dart';
 import '../../../Helper/cloud_firestore_helper.dart';
 import '../../../Stream/stream.dart';
@@ -7,10 +12,21 @@ import '../Model/chatmodel.dart';
 import '../Model/receiver_model.dart';
 
 // ignore: must_be_immutable, camel_case_types
-class Chat_Screen extends StatelessWidget {
+class Chat_Screen extends StatefulWidget {
   Chat_Screen({super.key});
+
+  @override
+  State<Chat_Screen> createState() => _Chat_ScreenState();
+}
+
+class _Chat_ScreenState extends State<Chat_Screen> {
   TextEditingController messageController = TextEditingController();
+  ImagePicker picker = ImagePicker();
+  File? image;
+
   String? message;
+  String? imgUrl;
+
   @override
   Widget build(BuildContext context) {
     Receiver receiver = ModalRoute.of(context)!.settings.arguments as Receiver;
@@ -101,6 +117,58 @@ class Chat_Screen extends StatelessWidget {
                   message = val;
                 },
                 decoration: InputDecoration(
+                  prefixIcon: IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        backgroundColor: Colors.white,
+                        context: context,
+                        builder: (ctx) {
+                          return Container(
+                            height: 200,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                IconButton(
+                                    onPressed: () async {
+                                      XFile? photo = await picker.pickImage(
+                                          source: ImageSource.camera);
+                                      setState(() {
+                                        image = File(photo!.path);
+                                      });
+
+                                      imgUrl = await Firestore_Helper
+                                          .firestore_helper
+                                          .uploadImage(image: image!);
+
+                                      log("$imgUrl");
+                                    },
+                                    icon: Icon(
+                                      Icons.camera_alt,
+                                      size: 35,
+                                    )),
+                                IconButton(
+                                  onPressed: () async {
+                                    XFile? photo = await picker.pickImage(
+                                        source: ImageSource.gallery);
+                                    setState(() {
+                                      image = File(photo!.path);
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.photo,
+                                    size: 35,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    icon: Icon(
+                      Icons.add,
+                    ),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),
@@ -109,10 +177,12 @@ class Chat_Screen extends StatelessWidget {
                   suffixIcon: IconButton(
                     onPressed: () {
                       ChatDetails chatdetails = ChatDetails(
-                          receiverUid: receiver.uid,
-                          senderUid:
-                              Auth_Helper.auth_helper.auth.currentUser!.uid,
-                          message: message!);
+                        receiverUid: receiver.uid,
+                        senderUid:
+                            Auth_Helper.auth_helper.auth.currentUser!.uid,
+                        message: message!,
+                        image: imgUrl!,
+                      );
 
                       Firestore_Helper.firestore_helper
                           .sendMessage(chatDetails: chatdetails);

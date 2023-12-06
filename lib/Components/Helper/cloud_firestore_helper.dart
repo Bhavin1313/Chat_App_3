@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../Screens/ChatPage/Model/chatmodel.dart';
 import 'auth_helper.dart';
@@ -9,6 +12,17 @@ class Firestore_Helper {
   static final Firestore_Helper firestore_helper = Firestore_Helper._();
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+
+  Future<String> uploadImage({required File image}) async {
+    var storageRef = firebaseStorage.ref().child("Image/${image.path}");
+    var uploadImage = storageRef.putFile(image);
+
+    await uploadImage;
+
+    String downloadedUrl = await uploadImage.snapshot.ref.getDownloadURL();
+    return downloadedUrl;
+  }
 
   addUser({required Map<String, dynamic> user_data}) async {
     await firestore
@@ -62,6 +76,7 @@ class Firestore_Helper {
         "sentby": chatDetails.senderUid,
         "receivedby": chatDetails.receiverUid,
         "message": chatDetails.message,
+        "image": chatDetails.image,
         "timestamp": FieldValue.serverTimestamp(),
       });
     } else {
