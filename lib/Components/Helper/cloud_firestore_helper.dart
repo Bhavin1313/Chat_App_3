@@ -76,7 +76,6 @@ class Firestore_Helper {
         "sentby": chatDetails.senderUid,
         "receivedby": chatDetails.receiverUid,
         "message": chatDetails.message,
-        "image": chatDetails.image,
         "timestamp": FieldValue.serverTimestamp(),
       });
     } else {

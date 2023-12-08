@@ -105,7 +105,8 @@ class _Chat_ScreenState extends State<Chat_Screen> {
                                     ),
                                   ],
                                 );
-                              });
+                              },
+                            );
                     }
                     return const Center(child: CircularProgressIndicator());
                   },
@@ -135,7 +136,7 @@ class _Chat_ScreenState extends State<Chat_Screen> {
                                       setState(() {
                                         image = File(photo!.path);
                                       });
-
+                                      Get.back();
                                       imgUrl = await Firestore_Helper
                                           .firestore_helper
                                           .uploadImage(image: image!);
@@ -153,6 +154,10 @@ class _Chat_ScreenState extends State<Chat_Screen> {
                                     setState(() {
                                       image = File(photo!.path);
                                     });
+                                    imgUrl = await Firestore_Helper
+                                        .firestore_helper
+                                        .uploadImage(image: image!);
+                                    Get.back();
                                   },
                                   icon: Icon(
                                     Icons.photo,
@@ -181,7 +186,6 @@ class _Chat_ScreenState extends State<Chat_Screen> {
                         senderUid:
                             Auth_Helper.auth_helper.auth.currentUser!.uid,
                         message: message!,
-                        image: imgUrl!,
                       );
 
                       Firestore_Helper.firestore_helper

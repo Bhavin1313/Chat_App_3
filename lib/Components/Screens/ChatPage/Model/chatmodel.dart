@@ -4,11 +4,10 @@ class ChatDetails {
   String senderUid;
   String receiverUid;
   String message;
-  String? image;
 
-  ChatDetails(
-      {required this.senderUid,
-      required this.receiverUid,
-      required this.message,
-      this.image});
+  ChatDetails({
+    required this.senderUid,
+    required this.receiverUid,
+    required this.message,
+  });
 }

@@ -111,7 +111,6 @@ class HomePage extends StatelessWidget {
                             photo: userData?[i]['photo']);
 
                         ChatDetails chatdata = ChatDetails(
-                            image: "",
                             receiverUid: receiver.uid,
                             senderUid:
                                 Auth_Helper.auth_helper.auth.currentUser!.uid,
