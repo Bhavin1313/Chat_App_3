@@ -34,6 +34,7 @@ class _Chat_ScreenState extends State<Chat_Screen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
+        leadingWidth: 95,
         leading: Row(
           children: [
             IconButton(
@@ -45,15 +46,9 @@ class _Chat_ScreenState extends State<Chat_Screen> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(
-              width: 10,
-            ),
             CircleAvatar(
-              radius: 19,
+              radius: 22,
               foregroundImage: NetworkImage("${receiver.photo}"),
-            ),
-            SizedBox(
-              width: 10,
             ),
           ],
         ),
@@ -63,14 +58,30 @@ class _Chat_ScreenState extends State<Chat_Screen> {
             color: Colors.white,
           ),
         ),
-        centerTitle: true,
         actions: [
-          CircleAvatar(
-            radius: 22,
-            foregroundImage: NetworkImage("${receiver.photo}"),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.video_camera_front_rounded,
+              color: Colors.white,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.call,
+              color: Colors.white,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.format_list_bulleted,
+              color: Colors.white,
+            ),
           ),
           SizedBox(
-            width: 20,
+            width: 10,
           ),
         ],
       ),
