@@ -29,19 +29,6 @@ class _TabPageState extends State<TabPage> {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Auth_Helper.auth_helper.signOut();
-
-              Get.offNamedUntil('/', (route) => false);
-            },
-            icon: Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-          )
-        ],
         title: Text(
           "Chat App",
           style: TextStyle(
@@ -242,48 +229,356 @@ class _TabPageState extends State<TabPage> {
                     child: Text("page 2"),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    (Auth_Helper.auth_helper.auth.currentUser?.photoURL == null)
-                        ? const CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: 90,
-                            child: CircleAvatar(
-                              radius: 85,
-                              foregroundImage: NetworkImage(
-                                  "https://img.freepik.com/premium-photo/dog-suit-sunglasses-sits-chair_781958-1562.jpg"),
-                            ),
-                          )
-                        : CircleAvatar(
-                            radius: 90,
-                            backgroundColor: Colors.orange,
-                            child: CircleAvatar(
-                              radius: 85,
-                              foregroundImage: NetworkImage(
-                                  "${Auth_Helper.auth_helper.auth.currentUser?.photoURL}"),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          (Auth_Helper.auth_helper.auth.currentUser?.photoURL ==
+                                  null)
+                              ? CircleAvatar(
+                                  radius: 40,
+                                  foregroundImage: NetworkImage(
+                                      "https://img.freepik.com/premium-photo/dog-suit-sunglasses-sits-chair_781958-1562.jpg"),
+                                )
+                              : CircleAvatar(
+                                  radius: 40,
+                                  foregroundImage: NetworkImage(
+                                      "${Auth_Helper.auth_helper.auth.currentUser?.photoURL}"),
+                                ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              (Auth_Helper.auth_helper.auth.currentUser
+                                          ?.displayName ==
+                                      null)
+                                  ? (Auth_Helper.auth_helper.auth.currentUser
+                                              ?.email ==
+                                          null)
+                                      ? Text(
+                                          "John Doe",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22,
+                                          ),
+                                        )
+                                      : Text(
+                                          "${Auth_Helper.auth_helper.auth.currentUser?.email?.split("@")[0]}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22,
+                                          ),
+                                        )
+                                  : Text(
+                                      "NAME: ${Auth_Helper.auth_helper.auth.currentUser?.displayName}",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              (Auth_Helper.auth_helper.auth.currentUser
+                                          ?.email ==
+                                      null)
+                                  ? Text("JohnDoe@gmail.com")
+                                  : Text(
+                                      "${Auth_Helper.auth_helper.auth.currentUser?.email}"),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const Divider(),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.key,
+                              size: 40,
+                              color: Colors.grey,
                             ),
                           ),
-                    const Divider(),
-                    (Auth_Helper.auth_helper.auth.currentUser?.displayName ==
-                            null)
-                        ? (Auth_Helper.auth_helper.auth.currentUser?.email ==
-                                null)
-                            ? Text("NAME: John Doe")
-                            : Text(
-                                "NAME: ${Auth_Helper.auth_helper.auth.currentUser?.email?.split("@")[0]}")
-                        : Text(
-                            "NAME: ${Auth_Helper.auth_helper.auth.currentUser?.displayName}"),
-                    const Divider(),
-                    (Auth_Helper.auth_helper.auth.currentUser?.email == null)
-                        ? Text("EMAIL: JohnDoe@gmail.com")
-                        : Text(
-                            "EMAIL: ${Auth_Helper.auth_helper.auth.currentUser?.email}"),
-                    const Divider(),
-                  ],
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Account",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "Security notifications",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.lock,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Privacy",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "Block contact",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.people_alt_outlined,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Avatar",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "Create, edit ,profile photo",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.chat,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Chats",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "Theme, wallpapers, chat history",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.notifications,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Notifications",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "Mwssage, group & call tones",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.storage,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Storage and data",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "Network usage, auto-download",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 75,
+                            width: 75,
+                            child: Icon(
+                              Icons.language,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "App Language",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                "English",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Auth_Helper.auth_helper.signOut();
+
+                          Get.offNamedUntil('/', (route) => false);
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 75,
+                              width: 75,
+                              child: Icon(
+                                Icons.logout,
+                                size: 40,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 25,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Log Out",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 22,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
