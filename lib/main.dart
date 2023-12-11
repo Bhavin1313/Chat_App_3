@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'Components/Screens/ChatPage/Views/chatpage.dart';
+import 'Components/Screens/tab_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -34,6 +35,10 @@ void main() async {
         GetPage(
           name: '/chat',
           page: () => Chat_Screen(),
+        ),
+        GetPage(
+          name: '/tab',
+          page: () => TabPage(),
         ),
       ],
     ),

@@ -109,7 +109,7 @@ class LoginPage extends StatelessWidget {
                                 .signIn(data: singIn);
 
                             if (res['user'] != null) {
-                              Get.offNamedUntil('/home', (routes) => false);
+                              Get.offNamedUntil('/tab', (routes) => false);
                             } else if (res['error'] != null) {
                               Get.snackbar("Flutter Chat App", "Login Failed");
                             }
@@ -166,7 +166,7 @@ class LoginPage extends StatelessWidget {
                             await Auth_Helper.auth_helper.signInWithGoogle();
 
                         if (res['user'] != null) {
-                          Get.offNamedUntil('/home', (routes) => false);
+                          Get.offNamedUntil('/tab', (routes) => false);
                         } else if (res['error'] != null) {
                           Get.snackbar("Flutter Chat App", "Login Failed");
                         }
@@ -196,7 +196,7 @@ class LoginPage extends StatelessWidget {
                         if (res['user'] == null) {
                           Get.snackbar("Chat App", "Login Failed");
                         } else {
-                          Get.offNamedUntil('/home', (routes) => false);
+                          Get.offNamedUntil('/tab', (routes) => false);
                         }
                       },
                       child: Ink(

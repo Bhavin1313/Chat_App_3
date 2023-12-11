@@ -33,8 +33,36 @@ class _Chat_ScreenState extends State<Chat_Screen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey.withOpacity(.4),
-        title: Text("${receiver.name}"),
+        backgroundColor: Colors.teal,
+        leading: Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.arrow_back_sharp,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            CircleAvatar(
+              radius: 19,
+              foregroundImage: NetworkImage("${receiver.photo}"),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+          ],
+        ),
+        title: Text(
+          "${receiver.name}",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         actions: [
           CircleAvatar(
@@ -48,12 +76,13 @@ class _Chat_ScreenState extends State<Chat_Screen> {
       ),
       body: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-          image: NetworkImage(
-            "https://t4.ftcdn.net/jpg/03/38/75/29/360_F_338752910_Th7euFDcjaI0nWNOBoi0JDSR0zu92WkM.jpg",
+          image: DecorationImage(
+            image: AssetImage(
+              "lib/Assets/123.png",
+            ),
+            fit: BoxFit.cover,
           ),
-          fit: BoxFit.cover,
-        )),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
