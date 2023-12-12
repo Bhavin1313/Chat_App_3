@@ -1,4 +1,5 @@
 import 'package:chat_app/Components/Screens/Login_Screen/login_screen.dart';
+import 'package:chat_app/Components/Screens/R_Detail/r_detail.dart';
 import 'package:chat_app/Components/Screens/SignUp_Screen/singup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,6 +35,10 @@ void main() async {
         GetPage(
           name: '/tab',
           page: () => TabPage(),
+        ),
+        GetPage(
+          name: '/d',
+          page: () => R_Detail(),
         ),
       ],
     ),

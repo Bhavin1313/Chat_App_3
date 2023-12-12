@@ -30,14 +30,32 @@ class _TabPageState extends State<TabPage> {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Chat App",
           style: TextStyle(
             color: Colors.white,
           ),
         ),
-        centerTitle: true,
         backgroundColor: Colors.teal,
+        actions: [
+          SizedBox(
+            width: 20,
+          ),
+          Icon(
+            Icons.camera_alt_outlined,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 20,
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -226,8 +244,8 @@ class _TabPageState extends State<TabPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
-                  child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(10),
+                  child: const SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -270,7 +288,7 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ],
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
@@ -283,7 +301,7 @@ class _TabPageState extends State<TabPage> {
                                     fontSize: 22,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 7,
                                 ),
                                 Text(
@@ -327,7 +345,7 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
@@ -373,14 +391,152 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "John Doe",
+                                  "Bhavin ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:51 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Vaibhav",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "11:20 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Bhargavsinh",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "11:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Kevin Mali",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
@@ -419,14 +575,14 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "John Doe",
+                                  "Neel Maniya",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
@@ -436,7 +592,7 @@ class _TabPageState extends State<TabPage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "10:31 am",
+                                  "02:01 pm",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 17,
@@ -465,14 +621,14 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "John Doe",
+                                  "Chirag Dudhat",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
@@ -482,7 +638,7 @@ class _TabPageState extends State<TabPage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "10:31 am",
+                                  "03:31 pm",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 17,
@@ -511,14 +667,14 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "John Doe",
+                                  "Umang Takoliya",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
@@ -528,7 +684,7 @@ class _TabPageState extends State<TabPage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "10:31 am",
+                                  "05:47 pm",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 17,
@@ -557,14 +713,14 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "John Doe",
+                                  "Vinus Lathiya",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
@@ -574,7 +730,7 @@ class _TabPageState extends State<TabPage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "10:31 am",
+                                  "07:00 pm",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 17,
@@ -603,14 +759,14 @@ class _TabPageState extends State<TabPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "John Doe",
+                                  "John Lamba",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
@@ -620,145 +776,7 @@ class _TabPageState extends State<TabPage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "10:31 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "John Doe",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "10:31 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "John Doe",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "10:31 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "John Doe",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "10:31 am",
+                                  "08:41 pm",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 17,

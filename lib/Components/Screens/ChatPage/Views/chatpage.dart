@@ -51,10 +51,15 @@ class _Chat_ScreenState extends State<Chat_Screen> {
             ),
           ],
         ),
-        title: Text(
-          "${receiver.name}",
-          style: TextStyle(
-            color: Colors.white,
+        title: GestureDetector(
+          onTap: () {
+            Get.toNamed('/d', arguments: receiver);
+          },
+          child: Text(
+            "${receiver.name}",
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
         actions: [
