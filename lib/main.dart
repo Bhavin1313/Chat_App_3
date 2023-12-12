@@ -1,4 +1,3 @@
-import 'package:chat_app/Components/Screens/HomePage/homepage.dart';
 import 'package:chat_app/Components/Screens/Login_Screen/login_screen.dart';
 import 'package:chat_app/Components/Screens/SignUp_Screen/singup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'Components/Screens/ChatPage/Views/chatpage.dart';
-import 'Components/Screens/tab_page.dart';
+import 'Components/Screens/Tab_Page/tab_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,10 +26,6 @@ void main() async {
         GetPage(
           name: '/signup',
           page: () => SignUp_Page(),
-        ),
-        GetPage(
-          name: '/home',
-          page: () => HomePage(),
         ),
         GetPage(
           name: '/chat',

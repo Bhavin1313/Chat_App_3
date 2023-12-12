@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-import '../Screens/ChatPage/Model/chatmodel.dart';
+import '../Screens/Tab_Page/Model/chatmodel.dart';
 import 'auth_helper.dart';
 
 class Firestore_Helper {

@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Helper/auth_helper.dart';
-import '../Helper/cloud_firestore_helper.dart';
-import '../Stream/stream.dart';
-import 'ChatPage/Model/chatmodel.dart';
-import 'ChatPage/Model/receiver_model.dart';
+import '../../Helper/auth_helper.dart';
+import '../../Helper/cloud_firestore_helper.dart';
+import '../../Stream/stream.dart';
+
+import 'Model/chatmodel.dart';
+import 'Model/receiver_model.dart';
 
 class TabPage extends StatefulWidget {
   const TabPage({super.key});
@@ -224,9 +225,551 @@ class _TabPageState extends State<TabPage> {
                     },
                   ),
                 ),
-                Center(
-                  child: Container(
-                    child: const Text("page 2"),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Status",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 22,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Stack(
+                              children: [
+                                CircleAvatar(
+                                  radius: 30,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: CircleAvatar(
+                                    radius: 11,
+                                    backgroundColor: Colors.teal,
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "My status",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                Text(
+                                  "Tap to add status update",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Recent updates",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 17,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 32,
+                              backgroundColor: Colors.greenAccent,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  foregroundImage: NetworkImage(
+                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "John Doe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "10:31 am",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(

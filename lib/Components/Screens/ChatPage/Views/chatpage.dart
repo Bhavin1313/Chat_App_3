@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,8 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import '../../../Helper/auth_helper.dart';
 import '../../../Helper/cloud_firestore_helper.dart';
 import '../../../Stream/stream.dart';
-import '../Model/chatmodel.dart';
-import '../Model/receiver_model.dart';
+import '../../Tab_Page/Model/chatmodel.dart';
+import '../../Tab_Page/Model/receiver_model.dart';
 
 // ignore: must_be_immutable, camel_case_types
 class Chat_Screen extends StatefulWidget {
