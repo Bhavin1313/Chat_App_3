@@ -1,5 +1,5 @@
 import 'package:chat_app/Components/Screens/Login_Screen/login_screen.dart';
-import 'package:chat_app/Components/Screens/R_Detail/r_detail.dart';
+
 import 'package:chat_app/Components/Screens/SignUp_Screen/singup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'Components/Screens/ChatPage/Views/chatpage.dart';
+import 'Components/Screens/R_Detail/r_detail.dart';
 import 'Components/Screens/Tab_Page/tab_page.dart';
 import 'firebase_options.dart';
 
