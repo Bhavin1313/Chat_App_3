@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../Helper/auth_helper.dart';
 import '../../Helper/cloud_firestore_helper.dart';
@@ -26,6 +29,10 @@ class _TabPageState extends State<TabPage> {
 
   @override
   Widget build(BuildContext context) {
+    ImagePicker picker = ImagePicker();
+    File? image;
+
+    String? imgUrl;
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -41,8 +48,17 @@ class _TabPageState extends State<TabPage> {
           SizedBox(
             width: 20,
           ),
-          Icon(
-            Icons.camera_alt_outlined,
+          IconButton(
+            onPressed: () async {
+              XFile? photo = await picker.pickImage(source: ImageSource.camera);
+              setState(() {
+                image = File(photo!.path);
+              });
+              Get.back();
+              imgUrl = await Firestore_Helper.firestore_helper
+                  .uploadImage(image: image!);
+            },
+            icon: Icon(Icons.camera_alt_outlined),
             color: Colors.white,
           ),
           SizedBox(
