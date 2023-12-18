@@ -7,33 +7,45 @@ import '../../../Utils/global.dart';
 import '../../Helper/auth_helper.dart';
 import '../../Model/signup_model.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(10),
             child: Column(
               children: [
-                Container(
-                  height: h * .35,
-                  width: w * .99,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        "https://www.freeiconspng.com/uploads/login-button-png-12.png",
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                // Container(
+                //   height: h * .35,
+                //   width: w * .99,
+                //   decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //       image: AssetImage(
+                //         "lib/Assets/abcd.jpeg",
+                //       ),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
+
+                CircleAvatar(
+                  radius: 180,
+                  foregroundImage: AssetImage("lib/Assets/abcd.jpeg"),
                 ),
                 SizedBox(
                   height: 10,
@@ -79,16 +91,16 @@ class LoginPage extends StatelessWidget {
                         },
                         obscureText: Global.show,
                         decoration: InputDecoration(
-                          // suffixIcon: IconButton(
-                          //   onPressed: () {
-                          //     setState(() {
-                          //       Global.show = !Global.show;
-                          //     });
-                          //   },
-                          //   icon: (Global.show)
-                          //       ? Icon(Icons.remove_red_eye)
-                          //       : Icon(Icons.remove_circle_outline),
-                          // ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                Global.show = !Global.show;
+                              });
+                            },
+                            icon: (Global.show)
+                                ? Icon(Icons.remove_red_eye)
+                                : Icon(Icons.remove_circle_outline),
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                           prefixIcon: Icon(Icons.key),
@@ -265,7 +277,7 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
-                          color: Colors.white,
+                          color: Colors.blueAccent,
                         ),
                       ),
                     ),

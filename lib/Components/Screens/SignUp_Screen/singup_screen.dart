@@ -5,9 +5,16 @@ import '../../../Utils/global.dart';
 import '../../Helper/auth_helper.dart';
 import '../../Model/signup_model.dart';
 
-class SignUp_Page extends StatelessWidget {
+class SignUp_Page extends StatefulWidget {
   SignUp_Page({super.key});
+
+  @override
+  State<SignUp_Page> createState() => _SignUp_PageState();
+}
+
+class _SignUp_PageState extends State<SignUp_Page> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -16,6 +23,7 @@ class SignUp_Page extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Sign Up"),
+        backgroundColor: Colors.white,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -23,17 +31,9 @@ class SignUp_Page extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                height: h * .35,
-                width: w,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      "https://cdn.dribbble.com/users/8619169/screenshots/16514320/secure_login_gif.gif",
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              CircleAvatar(
+                radius: 180,
+                foregroundImage: AssetImage("lib/Assets/abcd.jpeg"),
               ),
               SizedBox(
                 height: 10,
@@ -77,17 +77,17 @@ class SignUp_Page extends StatelessWidget {
                       },
                       obscureText: Global.show,
                       decoration: InputDecoration(
-                        // suffixIcon: IconButton(
-                        //   onPressed: () {
-                        //     setState(() {
-                        //       Global.show = !Global.show;
-                        //     });
-                        //   },
-                        //   icon: (Global.show)
-                        //       ? Icon(Icons.remove_red_eye)
-                        //       : Icon(Icons.remove_circle_outline),
-                        // ),
-                        prefixIcon: Icon(Icons.remove_red_eye),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              Global.show = !Global.show;
+                            });
+                          },
+                          icon: (Global.show)
+                              ? Icon(Icons.remove_red_eye)
+                              : Icon(Icons.remove_circle_outline),
+                        ),
+                        prefixIcon: Icon(Icons.key),
                         hintText: "Enter Password",
                         border: OutlineInputBorder(),
                       ),

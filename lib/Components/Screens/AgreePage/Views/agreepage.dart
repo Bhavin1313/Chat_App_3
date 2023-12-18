@@ -45,21 +45,24 @@ class _AgreeState extends State<Agree> {
                     "Read our ",
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                   Text(
                     "Privacy Policy. ",
                     style: TextStyle(
                       color: Colors.blue,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                   Text(
                     "Tap 'Agree and continue'",
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                 ],
@@ -71,14 +74,16 @@ class _AgreeState extends State<Agree> {
                     "to accept the ",
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                   Text(
                     "Terms of Service. ",
                     style: TextStyle(
                       color: Colors.blue,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                 ],
@@ -106,7 +111,8 @@ class _AgreeState extends State<Agree> {
                       "English",
                       style: TextStyle(
                         color: Colors.teal,
-                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                       ),
                     ),
                     Icon(
@@ -137,7 +143,8 @@ class _AgreeState extends State<Agree> {
                     "Agree and continue",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                 ),
