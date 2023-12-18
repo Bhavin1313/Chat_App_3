@@ -16,6 +16,7 @@ class LoginPage extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Colors.teal,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -24,11 +25,11 @@ class LoginPage extends StatelessWidget {
               children: [
                 Container(
                   height: h * .35,
-                  width: w,
+                  width: w * .99,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                        "https://cdn.dribbble.com/users/8619169/screenshots/16514320/secure_login_gif.gif",
+                        "https://www.freeiconspng.com/uploads/login-button-png-12.png",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -57,6 +58,8 @@ class LoginPage extends StatelessWidget {
                           prefixIcon: Icon(Icons.mail),
                           hintText: "Enter Email",
                           border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
                       ),
                       SizedBox(
@@ -86,7 +89,9 @@ class LoginPage extends StatelessWidget {
                           //       ? Icon(Icons.remove_red_eye)
                           //       : Icon(Icons.remove_circle_outline),
                           // ),
-                          prefixIcon: Icon(Icons.remove_red_eye),
+                          filled: true,
+                          fillColor: Colors.white,
+                          prefixIcon: Icon(Icons.key),
                           hintText: "Enter Password",
                           border: OutlineInputBorder(),
                         ),
@@ -122,14 +127,17 @@ class LoginPage extends StatelessWidget {
                           height: 50,
                           width: 300,
                           decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1,
+                              )),
                           alignment: Alignment.center,
                           child: const Text(
                             "Sign in",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
@@ -151,7 +159,7 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    color: Colors.grey,
+                    color: Colors.black,
                   ),
                 ),
                 const SizedBox(
@@ -245,7 +253,7 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 18,
-                        color: Colors.grey,
+                        color: Colors.black,
                       ),
                     ),
                     GestureDetector(
@@ -257,7 +265,7 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
-                          color: Colors.blue,
+                          color: Colors.white,
                         ),
                       ),
                     ),

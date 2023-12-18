@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'Components/Screens/AgreePage/Views/agreepage.dart';
 import 'Components/Screens/ChatPage/Views/chatpage.dart';
 import 'Components/Screens/R_Detail/r_detail.dart';
 import 'Components/Screens/Tab_Page/tab_page.dart';
@@ -22,7 +23,7 @@ void main() async {
       theme: ThemeData(useMaterial3: true),
       getPages: [
         GetPage(
-          name: '/',
+          name: '/login',
           page: () => LoginPage(),
         ),
         GetPage(
@@ -40,6 +41,10 @@ void main() async {
         GetPage(
           name: '/d',
           page: () => R_Detail(),
+        ),
+        GetPage(
+          name: '/',
+          page: () => Agree(),
         ),
       ],
     ),
