@@ -33,8 +33,7 @@ class _TabPageState extends State<TabPage> {
     File? image;
 
     String? imgUrl;
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -218,9 +217,10 @@ class _TabPageState extends State<TabPage> {
                               child: ListTile(
                                 onTap: () async {
                                   Receiver receiver = Receiver(
-                                      name: userData?[i]['name'],
-                                      uid: userData?[i]['uid'],
-                                      photo: userData?[i]['photo']);
+                                    name: userData?[i]['name'],
+                                    uid: userData?[i]['uid'],
+                                    photo: userData?[i]['photo'],
+                                  );
 
                                   ChatDetails chatdata = ChatDetails(
                                       receiverUid: receiver.uid,

@@ -32,7 +32,7 @@ class _SignUp_PageState extends State<SignUp_Page> {
           child: Column(
             children: [
               CircleAvatar(
-                radius: 180,
+                radius: 130,
                 foregroundImage: AssetImage("lib/Assets/abcd.jpeg"),
               ),
               SizedBox(
@@ -95,6 +95,50 @@ class _SignUp_PageState extends State<SignUp_Page> {
                     SizedBox(
                       height: 10,
                     ),
+                    TextFormField(
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return "Enter First Name";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: Global.signup_fname_c,
+                      onSaved: (val) {
+                        Global.signup_fname = val!;
+                      },
+                      obscureText: Global.show,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.mail_outline_sharp),
+                        hintText: "Enter  First Name",
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return "Enter Last Name";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: Global.signup_lname_c,
+                      onSaved: (val) {
+                        Global.signup_lname = val!;
+                      },
+                      obscureText: Global.show,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.mail_outline_sharp),
+                        hintText: "Enter  Last Name",
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     GestureDetector(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
@@ -103,6 +147,8 @@ class _SignUp_PageState extends State<SignUp_Page> {
                           SignUp_model data = SignUp_model(
                             s_email: Global.signup_email!,
                             s_pass: Global.signup_pass!,
+                            s_f_name: Global.signup_fname!,
+                            s_l_name: Global.signup_lname!,
                           );
 
                           Map<String, dynamic> res =
@@ -113,6 +159,8 @@ class _SignUp_PageState extends State<SignUp_Page> {
                           }
                           Global.signup_pass_c.clear();
                           Global.signup_email_c.clear();
+                          Global.signup_fname_c.clear();
+                          Global.signup_lname_c.clear();
                         }
                       },
                       child: Container(
