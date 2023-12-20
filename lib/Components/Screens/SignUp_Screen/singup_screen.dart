@@ -155,7 +155,7 @@ class _SignUp_PageState extends State<SignUp_Page> {
                               await Auth_Helper.auth_helper.signUp(data: data);
 
                           if (res['user'] != null) {
-                            Get.offNamedUntil("/", (routes) => false);
+                            Get.offNamedUntil("/login", (routes) => false);
                           }
                           Global.signup_pass_c.clear();
                           Global.signup_email_c.clear();

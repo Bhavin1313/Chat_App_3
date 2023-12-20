@@ -27,28 +27,19 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
+            height: h,
             padding: EdgeInsets.all(10),
             child: Column(
               children: [
-                // Container(
-                //   height: h * .35,
-                //   width: w * .99,
-                //   decoration: BoxDecoration(
-                //     image: DecorationImage(
-                //       image: AssetImage(
-                //         "lib/Assets/abcd.jpeg",
-                //       ),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
-
+                SizedBox(
+                  height: h * .025,
+                ),
                 CircleAvatar(
-                  radius: 180,
+                  radius: 150,
                   foregroundImage: AssetImage("lib/Assets/abcd.jpeg"),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: h * .01,
                 ),
                 Form(
                   key: formKey,
@@ -75,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: h * .01,
                       ),
                       TextFormField(
                         validator: (val) {
@@ -109,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: h * .01,
                       ),
                       GestureDetector(
                         onTap: () async {
@@ -159,12 +150,12 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: h * .01,
                 ),
                 const Divider(),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: h * .01,
                 ),
                 const Text(
                   "or continue with",
@@ -174,8 +165,8 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: h * .01,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -250,12 +241,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: h * .01,
                 ),
                 const Divider(),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: h * .02,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

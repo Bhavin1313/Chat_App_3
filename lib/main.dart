@@ -1,6 +1,7 @@
 import 'package:chat_app/Components/Screens/Login_Screen/login_screen.dart';
 
 import 'package:chat_app/Components/Screens/SignUp_Screen/singup_screen.dart';
+import 'package:chat_app/Components/Screens/Status/status.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,10 @@ void main() async {
         GetPage(
           name: '/',
           page: () => Agree(),
+        ),
+        GetPage(
+          name: '/status',
+          page: () => Status(),
         ),
       ],
     ),

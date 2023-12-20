@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_app/Utils/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,8 @@ class _TabPageState extends State<TabPage> {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     ImagePicker picker = ImagePicker();
     File? image;
 
@@ -195,6 +198,8 @@ class _TabPageState extends State<TabPage> {
               index: initialIndex,
               children: [
                 Container(
+                  padding:
+                      EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
                   color: Colors.white,
                   child: StreamBuilder(
                     stream: Firestore_Helper.firestore_helper.fetchUser(),
@@ -212,43 +217,86 @@ class _TabPageState extends State<TabPage> {
                         return ListView.builder(
                           itemCount: userData?.length,
                           itemBuilder: (ctx, i) {
-                            return Card(
-                              elevation: 0,
-                              child: ListTile(
-                                onTap: () async {
-                                  Receiver receiver = Receiver(
-                                    name: userData?[i]['name'],
-                                    uid: userData?[i]['uid'],
-                                    photo: userData?[i]['photo'],
-                                  );
-
-                                  ChatDetails chatdata = ChatDetails(
-                                      receiverUid: receiver.uid,
-                                      senderUid: Auth_Helper
-                                          .auth_helper.auth.currentUser!.uid,
-                                      message: "");
-                                  messageData = await Firestore_Helper
-                                      .firestore_helper
-                                      .displayMessage(chatDetails: chatdata);
-                                  Get.toNamed("/chat", arguments: receiver);
-                                },
-                                title: Text("${userData?[i]['name']}"),
-                                subtitle: Text("${userData?[i]['email']}"),
-                                leading: CircleAvatar(
-                                  radius: 30,
-                                  foregroundImage:
-                                      NetworkImage("${userData?[i]['photo']}"),
-                                ),
-                                trailing: IconButton(
-                                  onPressed: () {
-                                    Firestore_Helper.firestore_helper
-                                        .deleteUser(
-                                            deleteData:
-                                                "${userData?[i]['uid']}");
+                            return Column(
+                              children: [
+                                GestureDetector(
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 32,
+                                        backgroundColor: Colors.greenAccent,
+                                        child: CircleAvatar(
+                                          radius: 30,
+                                          backgroundColor: Colors.white,
+                                          child: CircleAvatar(
+                                            radius: 28,
+                                            foregroundImage: NetworkImage(
+                                                "${userData?[i]['photo']}"),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: w * .04,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${userData?[i]['name']}",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 22,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            "${userData?[i]['email']}",
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 17,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      IconButton(
+                                        onPressed: () {
+                                          Firestore_Helper.firestore_helper
+                                              .deleteUser(
+                                                  deleteData:
+                                                      "${userData?[i]['uid']}");
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: () async {
+                                    Receiver receiver = Receiver(
+                                      name: userData?[i]['name'],
+                                      uid: userData?[i]['uid'],
+                                      photo: userData?[i]['photo'],
+                                    );
+                                    ChatDetails chatdata = ChatDetails(
+                                        receiverUid: receiver.uid,
+                                        senderUid: Auth_Helper
+                                            .auth_helper.auth.currentUser!.uid,
+                                        message: "");
+                                    messageData = await Firestore_Helper
+                                        .firestore_helper
+                                        .displayMessage(chatDetails: chatdata);
+                                    Get.toNamed("/chat", arguments: receiver);
                                   },
-                                  icon: const Icon(Icons.delete_outline),
                                 ),
-                              ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
                             );
                           },
                         );
@@ -261,7 +309,7 @@ class _TabPageState extends State<TabPage> {
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
-                  child: const SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -282,10 +330,23 @@ class _TabPageState extends State<TabPage> {
                           children: [
                             Stack(
                               children: [
-                                CircleAvatar(
-                                  radius: 30,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                GestureDetector(
+                                  onTap: () async {
+                                    XFile? photo = await picker.pickImage(
+                                        source: ImageSource.camera);
+                                    setState(() {
+                                      image = File(photo!.path);
+                                    });
+                                    Get.back();
+                                    imgUrl = await Firestore_Helper
+                                        .firestore_helper
+                                        .uploadImage(image: image!);
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 30,
+                                    foregroundImage: NetworkImage(
+                                      "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                                    ),
                                   ),
                                 ),
                                 Positioned(
@@ -345,463 +406,66 @@ class _TabPageState extends State<TabPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
+                        ...status
+                            .map(
+                              (e) => Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed("/status", arguments: e);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 32,
+                                          backgroundColor: Colors.greenAccent,
+                                          child: CircleAvatar(
+                                            radius: 30,
+                                            backgroundColor: Colors.white,
+                                            child: CircleAvatar(
+                                              radius: 28,
+                                              foregroundImage: AssetImage(
+                                                "${e['image']}",
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${e['name']}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 22,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              "${e['time']}",
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 17,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "John Doe",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "10:31 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Bhavin ",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "10:51 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Vaibhav",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "11:20 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Bhargavsinh",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "11:31 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Kevin Mali",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "10:31 am",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Neel Maniya",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "02:01 pm",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Chirag Dudhat",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "03:31 pm",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Umang Takoliya",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "05:47 pm",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Vinus Lathiya",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "07:00 pm",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.greenAccent,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  foregroundImage: NetworkImage(
-                                    "https://img.freepik.com/premium-photo/panda-suit-tie-with-cup-coffee-generative-ai_634053-4050.jpg",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "John Lamba",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "08:41 pm",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                            )
+                            .toList(),
                       ],
                     ),
                   ),
@@ -887,8 +551,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -922,8 +586,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -957,8 +621,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -992,8 +656,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1027,8 +691,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1062,8 +726,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1097,8 +761,8 @@ class _TabPageState extends State<TabPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            const SizedBox(
-                              width: 25,
+                            SizedBox(
+                              width: w * .02,
                             ),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1125,7 +789,7 @@ class _TabPageState extends State<TabPage> {
                           onTap: () {
                             Auth_Helper.auth_helper.signOut();
 
-                            Get.offNamedUntil('/', (route) => false);
+                            Get.offNamedUntil('/login', (route) => false);
                           },
                           child: Row(
                             children: [
@@ -1138,8 +802,8 @@ class _TabPageState extends State<TabPage> {
                                   color: Colors.grey,
                                 ),
                               ),
-                              const SizedBox(
-                                width: 25,
+                              SizedBox(
+                                width: w * .02,
                               ),
                               const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

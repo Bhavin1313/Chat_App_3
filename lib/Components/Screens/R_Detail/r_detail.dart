@@ -66,7 +66,7 @@ class R_Detail extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 100,
-                      width: w * .99,
+                      width: w * .9,
                       child: MyWidgets.myrow(),
                     ),
                   ],
@@ -363,7 +363,7 @@ class R_Detail extends StatelessWidget {
                   ),
                   Card(
                     child: Container(
-                      height: h * .1,
+                      height: h * .11,
                       width: w,
                       decoration: BoxDecoration(
                         color: Colors.white,

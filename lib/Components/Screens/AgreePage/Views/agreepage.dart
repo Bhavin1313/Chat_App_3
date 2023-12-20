@@ -33,7 +33,7 @@ class _AgreeState extends State<Agree> {
               Text(
                 "Welcome to WhatsApp",
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 26,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -51,7 +51,7 @@ class _AgreeState extends State<Agree> {
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     Text(
@@ -59,7 +59,7 @@ class _AgreeState extends State<Agree> {
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     Text(
@@ -67,7 +67,7 @@ class _AgreeState extends State<Agree> {
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -81,7 +81,7 @@ class _AgreeState extends State<Agree> {
                     style: TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                   Text(
@@ -89,7 +89,7 @@ class _AgreeState extends State<Agree> {
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                 ],
@@ -118,7 +118,7 @@ class _AgreeState extends State<Agree> {
                       style: TextStyle(
                         color: Colors.teal,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     Icon(
@@ -150,7 +150,7 @@ class _AgreeState extends State<Agree> {
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                 ),

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class MyWidgets {
   static Builder myrow() {
     return Builder(builder: (context) {
-      double h = 85;
-      double w = 85;
+      double hi = MediaQuery.of(context).size.height;
+      double wi = MediaQuery.of(context).size.width;
+      double h = hi * .1;
+      double w = wi * .195;
       double iconsize = 30;
       double fontsize = 16;
       FontWeight fontWeight = FontWeight.w400;
