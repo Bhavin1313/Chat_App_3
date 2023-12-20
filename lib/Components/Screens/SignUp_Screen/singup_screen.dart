@@ -107,7 +107,6 @@ class _SignUp_PageState extends State<SignUp_Page> {
                       onSaved: (val) {
                         Global.signup_fname = val!;
                       },
-                      obscureText: Global.show,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.mail_outline_sharp),
                         hintText: "Enter  First Name",
@@ -129,7 +128,6 @@ class _SignUp_PageState extends State<SignUp_Page> {
                       onSaved: (val) {
                         Global.signup_lname = val!;
                       },
-                      obscureText: Global.show,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.mail_outline_sharp),
                         hintText: "Enter  Last Name",
