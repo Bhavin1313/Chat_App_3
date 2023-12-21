@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: h * .025,
+                  height: h * .020,
                 ),
                 CircleAvatar(
                   radius: 150,
