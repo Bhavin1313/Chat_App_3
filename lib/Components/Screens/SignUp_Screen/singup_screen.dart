@@ -167,14 +167,18 @@ class _SignUp_PageState extends State<SignUp_Page> {
                         height: 50,
                         width: 300,
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
                         ),
                         alignment: Alignment.center,
                         child: Text(
                           "Sign Up",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                           ),

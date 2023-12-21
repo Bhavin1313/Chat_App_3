@@ -183,16 +183,18 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       child: Ink(
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                "lib/Assets/google22.png",
+                        child: Card(
+                          elevation: 3,
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                image: AssetImage(
+                                  "lib/Assets/google22.png",
+                                ),
                               ),
                             ),
                           ),
@@ -211,30 +213,34 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       child: Ink(
-                        child: Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                "lib/Assets/a.webp",
+                        child: Card(
+                          elevation: 3,
+                          child: Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                image: AssetImage(
+                                  "lib/Assets/a.webp",
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                          image: AssetImage(
-                            "lib/Assets/fasebook2.jpg",
+                    Card(
+                      elevation: 3,
+                      child: Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                            image: AssetImage(
+                              "lib/Assets/fasebook2.jpg",
+                            ),
                           ),
                         ),
                       ),
