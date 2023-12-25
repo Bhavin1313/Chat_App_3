@@ -1,4 +1,4 @@
-![8](https://github.com/Bhavin1313/Chat_App_3/assets/99348404/9859ddf3-a056-4c8e-9902-cac726051631)Project Definition: Chat App (Firebase Miner)
+
 
 Project Description:
 "Firebase Miner (Chat App)" is an innovative and secure mobile application developed using
